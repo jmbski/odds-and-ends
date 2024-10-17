@@ -1,0 +1,71 @@
+s3_cli:
+  options:
+    profile: "ici-wasabi"
+    region: "us-east-1"
+    verbose: true
+    debug: false
+    action: "analyze"
+    subaction: "get_obj_count"
+    service: "s3api"
+    bucket: "ici-data-transfer-1"
+    object_name: ""
+    output_dir: "/home/joseph/coding_base/clear-window/cw_base/output/s3_cli/"
+    output_file: "file_categories_mini.json"
+    input_dir: "/home/joseph/coding_base/clear-window/cw_base/output/s3_cli/"
+    data_dir: "/home/joseph/coding_base/clear-window/cw_base/output/s3_cli/"
+    data_file: "ici_data_transfer_mini.feather"
+    input_file: ""
+    prefix: ""
+    page_size: 1000
+    page_count: 0
+    format_nums: false
+    only_common_exts: false
+  logging:
+    handlers:
+      s3_cli_debug_file:
+        backupCount: 5
+        class: logging.handlers.RotatingFileHandler
+        encoding: utf8
+        filename: /home/joseph/coding_base/clear-window/cw_base/logs/s3_cli.log
+        formatter: generic
+        level: DEBUG
+        maxBytes: 1048576000
+      s3_cli_err_file:
+        backupCount: 5
+        class: logging.handlers.RotatingFileHandler
+        encoding: utf8
+        filename: /home/joseph/coding_base/clear-window/cw_base/logs/s3_cli.log
+        formatter: error_fmt
+        level: ERROR
+        maxBytes: 1048576000
+      s3_cli_file:
+        backupCount: 5
+        class: logging.handlers.RotatingFileHandler
+        encoding: utf8
+        filename: /home/joseph/coding_base/clear-window/cw_base/logs/s3_cli.log
+        formatter: generic
+        level: INFO
+    loggers:
+      s3_cli:
+        handlers:
+        - console
+        - s3_cli_file
+        level: INFO
+        propagate: true
+      s3_cli_debug_logger:
+        handlers:
+        - console
+        - s3_cli_debug_file
+        level: DEBUG
+        propagate: false
+      s3_cli_err_logger:
+        handlers:
+        - console
+        - s3_cli_err_file
+        level: ERROR
+        propagate: false
+      s3_cli_logger:
+        handlers:
+        - s3_cli_file
+        level: INFO
+        propagate: false
